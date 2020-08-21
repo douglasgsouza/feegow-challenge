@@ -1,0 +1,71 @@
+@import 'variaveis';
+@import 'mixins';
+
+.btn1 {
+  background: #fff;
+  color: $cor_texto2 !important;
+  display: inline-block;
+  padding: 18px 30px;
+  font-family: $font1;
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid $cor_primaria;
+  cursor: pointer;
+  @include border-radius(3px);
+  &:hover{
+    background: $cor_primaria;
+    color: #fff !important;
+    border: 1px solid #009DFF;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+
+.btn3 {
+  background: rgb(1,129,245);
+  background: linear-gradient(to right,  rgba(1,129,245,1) 0%,rgba(93,178,255,1) 100%);
+  color: #fff;
+  display: inline-block;
+  padding: 18px 44px;
+  font-family: $font1;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  @include border-radius(4px);
+  text-align: center;
+  text-transform: capitalize;
+  @include transition(.5s);
+  cursor: pointer;
+  &:hover{
+    background: #fff;
+    color: #009DFF !important;
+    border: 1px solid #009DFF;
+  }
+  &:focus{
+    outline: none;
+  }
+  &.large-width{
+    width: 220px;
+  }
+}
+
+.btn4 {
+  color: #fff !important;
+  display: inline-block;
+  margin: 15px 0;
+  padding: 17px 44px;
+  font-family: $font1;
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  @include transition(.5s);
+  cursor: pointer;
+  background: linear-gradient( 0deg, darken($cor_primaria, 10) 0%, $cor_primaria 100%);
+  &:hover{
+    background: linear-gradient( 0deg, darken($cor_primaria, 10) 0%, $cor_primaria 300%);
+  }
+  &:focus{
+    outline: none;
+  }
+}

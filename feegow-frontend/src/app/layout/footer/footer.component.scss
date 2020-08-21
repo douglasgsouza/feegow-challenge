@@ -1,5 +1,128 @@
 @import "../scss/shared";
 
+.prefooter {
+  position: relative;
+  z-index: 1;
+
+  &::before, &::after {
+    background-image: url('../../../assets/images/prefooter_1.jpg');
+    content: '';
+    width: 50%;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+
+  &::after {
+    right: 0;
+    top: 0;
+    background-image: url(../../../assets/images/prefooter_2.jpg);
+  }
+
+  .prefooter-inner {
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+
+    &::before, &::after {
+      background-color: rgba(0, 76, 140, 0.8);
+      content: '';
+      width: 100%;
+      top: 0;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      @include mid_device {
+        width: 50%;
+        text-align: left;
+      }
+    }
+
+    &::before {
+      left: 0;
+      top: 0;
+    }
+
+    &::after {
+      right: 0;
+      top: 0;
+      background-color: rgba(0, 61, 51, 0.8);
+    }
+
+    .prefooter-single {
+      position: relative;
+      z-index: 100;
+
+      .prefooter-info {
+
+        span {
+          display: block;
+          font-size: 18px;
+          color: #fff;
+          margin-bottom: 4px;
+          font-family: $font1;
+          @include small_device {
+            font-size: 15px;
+          }
+        }
+
+        h3 {
+          color: #fff;
+          font-size: 30px;
+          font-weight: 600;
+        }
+      }
+
+      .info_button {
+        margin-bottom: 30px;
+        @include mid_device {
+          margin-bottom: 0;
+        }
+
+        a {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  .btn-branco {
+    color: #fff;
+    display: inline-block;
+    padding: 17px 32px;
+    font-family: $font1;
+    font-size: 16px;
+    font-weight: 400;
+    border: 1px solid #fff;
+    @include border-radius(5px);
+    text-align: center;
+    text-transform: capitalize;
+    @include transition(.5s);
+    cursor: pointer;
+
+    &:hover {
+      background: #fff;
+      color: #009DFF;
+      border: 1px solid transparent;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &.large-width {
+      width: 220px;
+    }
+  }
+}
+
 footer {
   background: #1c2f47;
 
@@ -46,7 +169,7 @@ footer {
             color: #b8bdc3;
             font-size: 16px;
             line-height: 40px;
-            font-family: $font2;
+            font-family: $font1;
           }
         }
       }
@@ -89,13 +212,13 @@ footer {
       }
 
       p {
-        color: rgba(255,255,255,0.6);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 14px;
         font-weight: 400;
         line-height: 26px;
 
         a {
-          color: rgba(255,255,255,0.6);
+          color: rgba(255, 255, 255, 0.6);
 
           &:hover {
             color: #00bfa5;
@@ -107,14 +230,14 @@ footer {
 
       ul {
         li {
-          color: rgba(255,255,255,0.6);
+          color: rgba(255, 255, 255, 0.6);
           font-size: 16px;
           line-height: 40px;
 
           a {
             color: #b8bdc3;
             font-weight: 400;
-            font-family: $font2;
+            font-family: $font1;
 
             &:hover {
               color: #00bfa5;
@@ -139,12 +262,13 @@ footer {
       }
     }
   }
+
+  .divisor {
+    border-top: 1px solid #4e5a69;
+    padding-bottom: 30px;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+  }
 }
 
-.divisor {
-  border-top: 1px solid #4e5a69;
-  padding-bottom: 30px;
-  display: block;
-  overflow: hidden;
-  width: 100%;
-}

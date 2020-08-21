@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,700|Ubuntu:300,400,500,600,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
-// fonts
 $font1:  'Roboto', sans-serif;
 
-$font2:  'Ubuntu', sans-serif;
-// fonts-size
+$header-height: 84px;
 
-$header_bg: #00bfa5;
-$footer_bg: #1c2f47;
-$heading_color: #1a1a1a;
+$cor_primaria: #00bfa5;
+$cor_secundaria: #1c2f47;
+
+$cor_titulo: #1a1a1a;
+
+$cor_texto1: #222;
+$cor_texto2: #296ea4;
+

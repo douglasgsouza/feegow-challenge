@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, HostListener, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,17 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  isSticky = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const pos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isSticky = pos > 100;
   }
 
 }
