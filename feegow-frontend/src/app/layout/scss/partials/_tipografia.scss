@@ -1,0 +1,66 @@
+@import 'variaveis';
+
+body {
+  font-family: $font1;
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+a:focus,
+.button:focus, button:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+a:focus {
+  text-decoration: none;
+}
+
+a,
+button {
+  outline: medium none;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: $font1;
+  color: $heading_color;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none
+}
+
+p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  color: #b8bdc3;
+  margin-bottom: 13px;
+  font-family: $font2;
+}
+
+label {
+  color: #7e7e7e;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 24px;
+}

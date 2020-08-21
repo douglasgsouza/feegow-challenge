@@ -1,0 +1,150 @@
+@import "../scss/shared";
+
+footer {
+  background: #1c2f47;
+
+  .footer-top {
+    padding-top: 60px;
+    padding-bottom: 30px;
+    @include mid_device {
+      padding-top: 130px;
+      padding-bottom: 110px;
+    }
+
+    .footer-block {
+      overflow: hidden;
+
+      .footer-text {
+        font-size: 16px;
+        font-weight: 400;
+        color: #b8bdc3;
+        line-height: 30px;
+      }
+
+      margin-bottom: 40px;
+
+      @include mid_device {
+        margin-bottom: 30px;
+      }
+
+      .links {
+        position: relative;
+
+        li {
+          width: 50%;
+          float: left;
+
+          a {
+
+          }
+        }
+      }
+
+      .horario {
+        li {
+          span {
+            color: #b8bdc3;
+            font-size: 16px;
+            line-height: 40px;
+            font-family: $font2;
+          }
+        }
+      }
+
+      .footer-title {
+        font-size: 20px;
+        font-weight: 500;
+        color: #fff;
+        text-transform: capitalize;
+        font-family: $font1;
+        position: relative;
+        margin-bottom: 15px;
+        padding-bottom: 28px;
+
+        &::before {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          content: '';
+          width: 30px;
+          height: 2px;
+          background: #fff;
+          z-index: 1;
+        }
+
+        @include small_device {
+          margin-bottom: 20px;
+        }
+      }
+
+      .footer-logo {
+        font-size: 22px;
+        font-weight: 400;
+        color: #fff;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        @include large_device {
+          margin-bottom: 35px;
+        }
+      }
+
+      p {
+        color: rgba(255,255,255,0.6);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 26px;
+
+        a {
+          color: rgba(255,255,255,0.6);
+
+          &:hover {
+            color: #00bfa5;
+          }
+        }
+
+      }
+
+
+      ul {
+        li {
+          color: rgba(255,255,255,0.6);
+          font-size: 16px;
+          line-height: 40px;
+
+          a {
+            color: #b8bdc3;
+            font-weight: 400;
+            font-family: $font2;
+
+            &:hover {
+              color: #00bfa5;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .copy-right-block {
+    padding-bottom: 32px;
+
+    .copy-right {
+      font-size: 14px;
+      color: #b8bdc3;
+      margin-bottom: 0;
+      font-weight: 400;
+
+      a {
+        color: #b8bdc3;
+      }
+    }
+  }
+}
+
+.divisor {
+  border-top: 1px solid #4e5a69;
+  padding-bottom: 30px;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+}

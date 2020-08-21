@@ -1,0 +1,11 @@
+@import 'shared';
+@import 'partials/tipografia';
+
+.img {
+  max-width: 100%;
+  @include transition(.3s);
+}
+
+a, .button, button {
+  @include transition(.3s);
+}

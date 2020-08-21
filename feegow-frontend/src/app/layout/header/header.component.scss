@@ -1,0 +1,88 @@
+@import "../scss/shared";
+
+header {
+
+  background: $header_bg;
+
+  #menu {
+
+    text-align: center;
+
+    .nav-item {
+
+      @include mid_device() {
+          margin-right: 20px;
+        &:last-child {
+          margin-right: 60px;
+        }
+      }
+      @include large_device() {
+        margin-right: 25px;
+        &:last-child {
+          margin-right: 65px;
+        }
+      }
+      @include extra_large_device() {
+        margin-right: 33px;
+        &:last-child {
+          margin-right: 70px;
+        }
+      }
+
+
+      a {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 400;
+        padding: 18px 0;
+        font-family: $font1;
+        position: relative;
+
+        @include mid_device() {
+            font-size: 16px;
+            padding: 47px 0 48px 0;
+        }
+
+        &:hover {
+          color: #fff;
+          text-decoration: underline;
+        }
+      }
+
+      &:first-child a {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .navbar-dark .navbar-toggler {
+    color: rgba(255,255,255,.8);
+    border-color: rgba(255,255,255,.5);
+  }
+
+  .agendamento {
+    @include flexbox();
+    @include align-items(center);
+    @include justify-content(center);
+
+    .agendamento-btn {
+      a {
+        background: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        color:#01579b;
+        padding: 19px 43px 23px 43px;
+        font-family: $font1;
+        display: inline-block;
+        line-height: 1;
+        @include border-radius(6px);
+
+        &:hover {
+          background: #01579b;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+}
