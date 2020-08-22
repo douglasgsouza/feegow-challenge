@@ -1,0 +1,11 @@
+<div class="box-medico-thumb">
+    <img src="{{professional.foto}}" alt="{{professional.nome}}">
+</div>
+<div class="box-medico-nome text-center">
+  <h3>{{professional.tratamento || null}} {{professional.nome}}</h3>
+  <span *ngIf="professional.conselho && professional.documento_conselho">
+    {{professional.conselho}}{{professional.uf_conselho ? '-' + professional.uf_conselho.toUpperCase() : ''}}:
+    {{professional.documento_conselho}}
+  </span>
+  <button class="btn btn2">Agendar</button>
+</div>

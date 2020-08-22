@@ -8,7 +8,7 @@
               <div class="banner-text">
                 <h3> <span>Excelência em saúde</span> <br>
                   com os mais renomados médicos.</h3>
-                <a href="#" class="banner-btn">Conheça nosso corpo clínico
+                <a (click)="scrollToEspecialidades()" class="banner-btn">Conheça nossas especialidades
                 </a>
               </div>
             </div>
@@ -42,68 +42,27 @@
   <section class="area-corpo-clinico">
     <div class="container">
       <div class="row custom_align align-items-end justify-content-between">
-        <div class="col-lg-7">
+        <div class="col-lg-12">
           <div class="titulo-secao">
-            <h3>Corpo Clínico</h3>
+            <h3>Consulta de</h3>
             <p>Nosso centro médico reúne excelentes profissionais.<br>Estamos preparados para oferecer o melhor em saúde e eficiência no atendimento.</p>
-            <div class="bloco-especialidades">
-              <select class="select-especialidades" aria-label="Selecione uma especialidade">
-                <option>Selecione uma especialidade</option>
+            <div class="bloco-especialidades text-center">
+              <select class="select-especialidades" [formControl]="especialideSelecionada" aria-label="Selecione uma especialidade">
+                <option [ngValue]="null">Selecione uma especialidade</option>
+                <option *ngFor="let specialty of especialidades" [ngValue]="specialty">{{specialty.nome}}</option>
               </select>
             </div>
           </div>
         </div>
-
       </div>
-      <div class="row justify-content-center ">
-        <div class="col-lg-6">
-          <div class="text-center">
-            <h4>Cardiologistas</h4>
-          </div>
-        </div>
+      <div class="row" [hidden]="!loading">
+        <div class="loader">Aguarde...</div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-6">
-          <div class="box-medico">
-            <div class="box-medico-thumb">
-              <img src="assets/images/medico2.png" alt="">
-            </div>
-            <div class="box-medico-nome text-center">
-              <h3>Dr. Vinicius Maia</h3>
-              <span>CRM: 5200011</span>
-              <button class="btn btn2">Agendar</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="box-medico">
-            <div class="box-medico-thumb">
-              <img src="assets/images/medico3.png" alt="">
-            </div>
-            <div class="box-medico-nome text-center">
-              <h3>Dra. Carlos da Silva</h3>
-              <span>CRM: 5200011</span>
-              <button class="btn btn2">Agendar</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="box-medico">
-            <div class="box-medico-thumb">
-              <img src="assets/images/medico4.png" alt="">
-            </div>
-            <div class="box-medico-nome text-center">
-              <h3>Dra. Naiara Azevedo</h3>
-              <span>CRM: 5200011</span>
-              <button class="btn btn2">Agendar</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-professional-grid [specialty]="especialideSelecionada.value" [professionals]="profissionais" [hidden]="loading"></app-professional-grid>
       <div class="row">
         <div class="col-lg-12">
-          <div class="btn-conheca">
-            <a href="#" class="btn1">Conheça todo o corpo clínico</a>
+          <div class="btn-conheca mt-10">
+            <a href="#"> ou pesquise todo o corpo clínico</a>
           </div>
         </div>
       </div>

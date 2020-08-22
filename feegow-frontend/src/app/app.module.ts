@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {AppCoreModule} from './core/app-core.module';
 import {LayoutModule} from './layout/layout.module';
 import {PagesModule} from './pages/pages.module';
 
@@ -12,6 +13,7 @@ import {PagesModule} from './pages/pages.module';
   ],
   imports: [
     BrowserModule,
+    AppCoreModule,
     AppRoutingModule,
     LayoutModule,
     PagesModule,

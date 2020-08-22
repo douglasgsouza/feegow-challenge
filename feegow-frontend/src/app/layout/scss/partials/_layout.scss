@@ -7,6 +7,11 @@
   @include mid_device {
     padding-top: 0;
   }
+
+  a {
+    color: darken($cor_primaria, 5);
+    font-weight: 400;
+  }
 }
 
 .img {
