@@ -1,0 +1,83 @@
+@import "../../layout/scss/shared";
+
+
+.contato-section {
+  padding: 80px 0 50px;
+  @include mid_device {
+    padding: 70px 0 40px;
+  }
+}
+
+.contato-titulo {
+  font-size: 27px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.form-contact {
+
+  label {
+    font-size: 14px;
+  }
+
+  .form-group {
+    margin-bottom: 30px;
+  }
+
+  .form-control {
+    border: 1px solid #e5e6e9;
+    border-radius: 0;
+    height: 48px;
+    padding-left: 18px;
+    font-size: 14px;
+    background: transparent;
+
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      font-weight: 400;
+      color: #aaa;
+    }
+  }
+
+  textarea {
+    border-radius: 0;
+    height: 100% !important;
+  }
+}
+
+.info-contato {
+  margin-bottom: 25px;
+
+  .icon {
+    margin-right: 20px;
+
+    i, span {
+      color: #8f9195;
+      font-size: 27px;
+    }
+  }
+
+  .contato-texto {
+
+    h3 {
+      font-size: 22px;
+      font-weight: 500;
+      margin-bottom: 0;
+      color: #2a2a2a;
+    }
+
+    p {
+      color: $cor_texto1;
+    }
+
+    a {
+      color: $cor_primaria;
+    }
+  }
+}
+
+

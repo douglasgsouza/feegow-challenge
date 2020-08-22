@@ -22,35 +22,7 @@
   }
 }
 
-.btn3 {
-  background: rgb(1,129,245);
-  background: linear-gradient(to right,  rgba(1,129,245,1) 0%,rgba(93,178,255,1) 100%);
-  color: #fff;
-  display: inline-block;
-  padding: 18px 44px;
-  font-family: $font1;
-  font-size: 15px;
-  font-weight: 500;
-  border: 1px solid transparent;
-  @include border-radius(4px);
-  text-align: center;
-  text-transform: capitalize;
-  @include transition(.5s);
-  cursor: pointer;
-  &:hover{
-    background: #fff;
-    color: #009DFF !important;
-    border: 1px solid #009DFF;
-  }
-  &:focus{
-    outline: none;
-  }
-  &.large-width{
-    width: 220px;
-  }
-}
-
-.btn4 {
+.btn2 {
   color: #fff !important;
   display: inline-block;
   margin: 15px 0;

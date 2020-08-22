@@ -1,45 +1,5 @@
 @import "../../layout/scss/shared";
 
-.title-bg-1 {
-  background-image: url('../../../assets/images/banner_interno1.png');
-}
-
-.title-section {
-  background-size: cover;
-  background-position: center center;
-  padding: 150px 0 120px 0;
-
-  background-repeat: no-repeat;
-  @include mid_device {
-    padding: 275px 0 165px 0;
-  }
-
-  h2 {
-    font-size: 35px;
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 0;
-    @include mid_device {
-      font-size: 50px;
-    }
-  }
-
-  p {
-    font-size: 18px;
-    color: #fff;
-    font-weight: 400;
-    text-transform: capitalize;
-
-    a {
-      color: #fff;
-
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
-}
-
 .sobre-section {
   padding-top: 70px;
   padding-bottom: 70px;
