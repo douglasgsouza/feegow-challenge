@@ -15,14 +15,13 @@ header {
 
   .navbar {
     background: $cor_primaria;
-    height: $header-height;
+    min-height: $header-height;
     @include large_device {
       background: transparent;
     }
   }
 
   #menu {
-
 
     text-align: center;
 

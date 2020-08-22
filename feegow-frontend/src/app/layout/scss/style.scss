@@ -2,6 +2,9 @@
 @import 'partials/tipografia';
 @import 'partials/botoes';
 
+// Font Awesome
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
 .page {
   padding-top: $header-height;
   @include mid_device {
