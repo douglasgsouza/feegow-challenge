@@ -1,7 +1,9 @@
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {AgendamentoService} from './services/agendamento.service';
 import {ApiTokenInterceptor} from './services/api-token.interceptor';
+import {PatientService} from './services/patient.service';
 import {ProfessionalService} from './services/professional.service';
 import {SpecialtiesService} from './services/specialties.service';
 
@@ -18,7 +20,9 @@ import {SpecialtiesService} from './services/specialties.service';
       multi: true,
     },
     SpecialtiesService,
-    ProfessionalService
+    ProfessionalService,
+    PatientService,
+    AgendamentoService,
   ]
 })
 export class AppCoreModule {

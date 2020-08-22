@@ -11,6 +11,7 @@ export class ProfessionalGridComponent implements OnInit {
 
   @Input() specialty: Specialty;
   @Input() professionals: Professional[];
+  @Input() boxStyle: 'style1' | 'style2' = 'style1';
 
   constructor() { }
 

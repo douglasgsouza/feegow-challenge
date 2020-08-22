@@ -4,7 +4,7 @@
 
     <div class="container">
 
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" routerLink="/">
         <img src="assets/images/logo.png" alt="MedVita">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
@@ -22,16 +22,13 @@
             <a class="nav-link" routerLink="/sobre">Sobre</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/medicos">Corpo Clínico</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/contato">Contato</a>
           </li>
         </ul>
 
         <div class="agendamento">
           <div class="agendamento-btn">
-            <a href="#">Agendamento Online</a>
+            <a (click)="openModal()">Agendamento Online</a>
           </div>
         </div>
 

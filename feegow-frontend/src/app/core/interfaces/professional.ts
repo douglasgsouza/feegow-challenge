@@ -1,7 +1,7 @@
 import {ProfessionalSpecialty} from './professional-specialty';
 
 export interface Professional {
-  professional_id: number;
+  profissional_id: number;
   nome: string;
   tratamento: number;
   rqe: number;

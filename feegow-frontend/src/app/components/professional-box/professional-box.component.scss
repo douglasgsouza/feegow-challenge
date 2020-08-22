@@ -1,13 +1,15 @@
 @import "../../layout/scss/shared";
 
 :host {
-  display: block;
+
+  display: flex;
   margin-bottom: 40px;
-  box-shadow: 1px 1px 30px 0 rgba($cor_primaria, 0.15);
+
+  box-shadow: 0 0 15px 0 rgba($cor_primaria, 0.25);
   @include border-radius(20px);
 
   &:hover {
-    box-shadow: 1px 1px 30px 0 rgba($cor_primaria, 0.2);
+    box-shadow: 0 0 30px 0 rgba($cor_primaria, 0.4);
     .box-medico-thumb {
       img {
         @include transform(scale(1.1));
@@ -16,7 +18,6 @@
   }
 
   .box-medico-thumb {
-    height: 330px;
     overflow: hidden;
 
     img {
@@ -28,41 +29,85 @@
 
   .box-medico-nome {
     background: #fff;
-    padding: 22px 70px 25px 70px;
     position: relative;
-    min-height: 215px;
-    @include transform(translateY(-30px));
-    @include small_device {
-      padding: 20px;
-    }
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
 
-    h3 {
-      font-size: 20px;
+    h5 {
+      font-size: 16px;
+      @include mid_device {
+        font-size: 18px;
+      }
       font-weight: 500;
       @include transition(.3s);
       color: $cor_primaria;
       margin-bottom: 6px;
 
-      min-height: 75px;
       display: -webkit-box;
       //noinspection CssUnknownProperty
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-
-      @include mid_device {
-        font-size: 24px;
-      }
     }
 
     span {
       color: #738ea9;
-      font-size: 16px;
+      font-size: 14px;
       @include transition(.3s);
       display: block;
       font-weight: 400;
       font-family: $font1;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .btn {
+      margin: 10px 5px;
+    }
+  }
+
+  &.style1 {
+    flex-direction: column;
+    .box-medico-thumb {
+      height: 250px;
+    }
+    .box-medico-nome {
+      padding: 20px;
+      min-height: 215px;
+      @include transform(translateY(-30px));
+
+      h5 {
+        min-height: 75px;
+      }
+    }
+  }
+
+  &.style2 {
+    flex-direction: row;
+    height: 85%;
+    padding: 8px;
+
+    .box-medico-thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      img {
+        min-width: 100%;
+        min-height: 100%;
+      }
+    }
+    .box-medico-nome {
+      flex: 1 0 66.666667%;
+      max-width: 66.666667%;
+      padding: 8px;
+
+      h5 {
+        min-height: 60px;
+        //noinspection CssUnknownProperty
+        -webkit-line-clamp: 3;
+      }
     }
   }
 }

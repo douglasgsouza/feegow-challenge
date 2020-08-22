@@ -1,0 +1,97 @@
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h2><span>Agendamento</span> Online</h2>
+
+        <div [hidden]="profissionalSelecionado">
+
+          <div class="form-group">
+            <label for="modal-input-especialidade">Consulta de:</label>
+            <select class="form-control especialidades" id="modal-input-especialidade" [formControl]="especialideSelecionada"
+                    aria-label="Selecione uma especialidade">
+              <option [ngValue]="null">Selecione uma especialidade</option>
+              <option *ngFor="let specialty of especialidades" [ngValue]="specialty">{{specialty.nome}}</option>
+            </select>
+          </div>
+
+          <div class="row" [hidden]="!loading">
+            <div class="loader">Aguarde...</div>
+          </div>
+          <app-professional-grid boxStyle="style2" [specialty]="especialideSelecionada.value" [professionals]="profissionais"
+                                 [hidden]="loading"></app-professional-grid>
+
+        </div>
+
+        <div *ngIf="profissionalSelecionado">
+          <p class="agendamento-com">{{profissionalSelecionado.tratamento || null}} {{profissionalSelecionado.nome}} - {{especialideSelecionada.value.nome}}</p>
+          <h3>Preencha seus dados</h3>
+
+          <form [formGroup]="agendamentoForm">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="modal-input-nome">Nome Completo:</label>
+                  <input formControlName="name" type="text" class="form-control" id="modal-input-nome" placeholder="Seu nome" required
+                         [ngClass]="getValidationClasses('name')">
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('required')">
+                    Digite seu nome completo
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="modal-input-conheceu">Como conheceu?</label>
+                  <select formControlName="source_id" class="form-control" id="modal-input-conheceu" required
+                          [ngClass]="getValidationClasses('source_id')">
+                    <option [value]="null">Selecione</option>
+                    <option *ngFor="let origem of origens" [value]="origem.origem_id">{{origem.nome_origem}}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('required')">
+                    Informe como nos conheceu
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="modal-input-nascimento">Nascimento:</label>
+                  <input formControlName="birthdate" type="date" class="form-control" id="modal-input-nascimento"
+                         placeholder="Data de nascimento" required
+                         [ngClass]="getValidationClasses('birthdate')">
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('birthdate').hasError('required')">
+                    Informe a sua data de nascimento
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="modal-input-cpf">CPF:</label>
+                  <input formControlName="cpf" type="text" class="form-control" id="modal-input-cpf" placeholder="CPF" mask="000.000.000-00"
+                         required
+                         [ngClass]="getValidationClasses('cpf')">
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('cpf').hasError('required')">
+                    Informe seu CPF
+                  </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('cpf').hasError('mask')">
+                    CPF inválido
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [hidden]="!profissionalSelecionado" (click)="agendar()">Solicitar Horários</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

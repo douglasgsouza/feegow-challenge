@@ -3,22 +3,22 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {filter, finalize, map, switchMap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
-import {Specialty} from '../interfaces/specialty';
+import {PatientSource} from '../interfaces/patient-source';
 
-interface SpecialityListResponse {
+interface PatientSourceListResponse {
   success: boolean;
-  content: Specialty[];
+  content: PatientSource[];
 }
 
 /**
- * Serviço de Especialidades
+ * Serviço de Pacientes
  *
  * Faz a comunicação com a API da FeeGow
  */
 @Injectable({
   providedIn: 'root'
 })
-export class SpecialtiesService {
+export class PatientService {
 
   /**
    * Flag para verificar se já existe um request em andamento
@@ -26,20 +26,20 @@ export class SpecialtiesService {
   private loading = false;
 
   /**
-   * Armazena a lista de especialidades em cache
+   * Armazena a lista de origens em cache
    */
-  private specialties  = new BehaviorSubject<Specialty[]>(null);
+  private sources  = new BehaviorSubject<PatientSource[]>(null);
 
   /**
-   * Observável filtrado com a lista de especialidades em cache
+   * Observável filtrado com a lista de origens em cache
    */
-  private specialties$ = this.specialties.asObservable().pipe(filter(val => !!val));
+  private sources$ = this.sources.asObservable().pipe(filter(val => !!val));
 
   constructor(private http: HttpClient) {
   }
 
   /**
-   * Retorna a lista de Especialidades
+   * Retorna a lista de Origens
    *
    * Este método utiliza técnicas para armazenamento em cache de um fluxo observável, impedindo requests desnecessários quando
    * os dados já estão armazenados em memória ou em carregamento.
@@ -50,25 +50,25 @@ export class SpecialtiesService {
    *
    * @param reload Indica se deseja forçar o recarregamento dos dados, caso estejam em cache
    */
-  getAll(reload: boolean = false): Observable<Specialty[]> {
+  getPatientSources(reload: boolean = false): Observable<PatientSource[]> {
 
     // verifica se já está carregando, se não tem dados em cache ou se solicitou o reload
-    if (!this.loading && this.specialties.value === null || reload) {
+    if (!this.loading && this.sources.value === null || reload) {
 
       // faz o request a API
       this.loading = true;
-      return this.http.get<SpecialityListResponse>(environment.apiUrl + '/specialties/list').pipe(
+      return this.http.get<PatientSourceListResponse>(environment.apiUrl + '/patient/list-sources').pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
-          this.specialties.next(result); // envia o resultado para o fluxo observável para o cache dos dados
-          return this.specialties$; // returna o fluxo observável cacheado
+          this.sources.next(result); // envia o resultado para o fluxo observável para o cache dos dados
+          return this.sources$; // returna o fluxo observável cacheado
         }),
         finalize(() => this.loading = false)
       );
 
     // returna o fluxo observável cacheado
     } else {
-      return this.specialties$;
+      return this.sources$;
     }
   }
 }

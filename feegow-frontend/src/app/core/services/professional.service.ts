@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {filter, map, switchMap} from 'rxjs/operators';
+import {filter, finalize, map, switchMap} from 'rxjs/operators';
 import {environment} from '../../../environments/environment';
 import {Professional} from '../interfaces/professional';
 
@@ -62,12 +62,14 @@ export class ProfessionalService {
     if (!this.loading && this.professionals.value === null || reload) {
 
       // faz o request a API
+      this.loading = true;
       return this.http.get<ProfessionalListResponse>(environment.apiUrl + '/professional/list').pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
           this.professionals.next(result); // envia o resultado para o fluxo observável para o cache dos dados
           return this.professionals$; // returna o fluxo observável cacheado
-        })
+        }),
+        finalize(() => this.loading = false)
       );
 
       // returna o fluxo observável cacheado
@@ -100,6 +102,7 @@ export class ProfessionalService {
       };
 
       // faz o request a API
+      this.loading = true;
       return this.http.get<ProfessionalListResponse>(environment.apiUrl + '/professional/list', {params}).pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
@@ -107,7 +110,8 @@ export class ProfessionalService {
           currentVal[specialtyId] = result;
           this.professionalsBySpeciality.next(currentVal); // envia o resultado para o fluxo observável para o cache dos dados
           return this.professionalsBySpeciality$.pipe(map(obj => obj[specialtyId]));
-        })
+        }),
+        finalize(() => this.loading = false)
       );
 
       // returna o fluxo observável cacheado

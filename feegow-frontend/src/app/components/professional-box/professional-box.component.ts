@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Professional} from '../../core/interfaces/professional';
+import {Specialty} from '../../core/interfaces/specialty';
+import {AgendamentoService} from '../../core/services/agendamento.service';
 
 @Component({
   selector: 'app-professional-box',
@@ -8,23 +10,16 @@ import {Professional} from '../../core/interfaces/professional';
 })
 export class ProfessionalBoxComponent implements OnInit {
 
+  @Input() specialty: Specialty;
   @Input() professional: Professional;
 
-  constructor() { }
+  constructor(private agendamentoService: AgendamentoService) { }
 
   ngOnInit(): void {
-    if (!this.professional.foto) {
-      switch (this.professional.sexo) {
-        case 'Masculino':
-          this.professional.foto = 'assets/images/placeholder_masculino.jpg';
-          break;
-        case 'Feminino':
-          this.professional.foto = 'assets/images/placeholder_feminino.jpg';
-          break;
-        default:
-          this.professional.foto = 'assets/images/placeholder_profissional.jpg';
-      }
-    }
+  }
+
+  agendar(): void {
+    this.agendamentoService.abrirAgendamento(this.specialty, this.professional);
   }
 
 }

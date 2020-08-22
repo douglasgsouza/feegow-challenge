@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit, ViewEncapsulation} from '@angular/core';
+import {AgendamentoService} from '../../core/services/agendamento.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   isSticky = false;
 
-  constructor() { }
+  constructor(private agendamentoService: AgendamentoService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +20,10 @@ export class HeaderComponent implements OnInit {
   onScroll(): void {
     const pos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     this.isSticky = pos > 100;
+  }
+
+  openModal(): void {
+    this.agendamentoService.abrirAgendamento();
   }
 
 }

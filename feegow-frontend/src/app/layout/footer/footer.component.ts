@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AgendamentoService} from '../../core/services/agendamento.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,9 +9,13 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private agendamentoService: AgendamentoService) { }
 
   ngOnInit(): void {
+  }
+
+  openModal(): void {
+    this.agendamentoService.abrirAgendamento();
   }
 
 }
