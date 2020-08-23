@@ -29,19 +29,25 @@
 
         </div>
 
-        <div *ngIf="profissionalSelecionado">
+        <div *ngIf="profissionalSelecionado && !agendamentoCriado">
           <p class="agendamento-com">{{profissionalSelecionado.tratamento || null}} {{profissionalSelecionado.nome}} - {{especialideSelecionada.value.nome}}</p>
           <h3>Preencha seus dados</h3>
 
-          <form [formGroup]="agendamentoForm">
+          <form [formGroup]="agendamentoForm" >
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="modal-input-nome">Nome Completo:</label>
                   <input formControlName="name" type="text" class="form-control" id="modal-input-nome" placeholder="Seu nome" required
-                         [ngClass]="getValidationClasses('name')">
+                         pattern="^[a-zA-Z]+ [a-zA-Z].*$" [ngClass]="getValidationClasses('name')">
                   <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('required')">
+                    Digite seu nome
+                  </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('pattern')">
                     Digite seu nome completo
+                  </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('server')">
+                    Nome inválido.
                   </div>
                 </div>
               </div>
@@ -53,8 +59,11 @@
                     <option [value]="null">Selecione</option>
                     <option *ngFor="let origem of origens" [value]="origem.origem_id">{{origem.nome_origem}}</option>
                   </select>
-                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('name').hasError('required')">
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('source_id').hasError('required')">
                     Informe como nos conheceu
+                  </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('source_id').hasError('server')">
+                    Campo inválido.
                   </div>
                 </div>
               </div>
@@ -66,6 +75,9 @@
                          [ngClass]="getValidationClasses('birthdate')">
                   <div class="invalid-feedback" *ngIf="agendamentoForm.get('birthdate').hasError('required')">
                     Informe a sua data de nascimento
+                  </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('birthdate').hasError('server')">
+                    Data de nascimento inválida
                   </div>
                 </div>
               </div>
@@ -81,16 +93,28 @@
                   <div class="invalid-feedback" *ngIf="agendamentoForm.get('cpf').hasError('mask')">
                     CPF inválido
                   </div>
+                  <div class="invalid-feedback" *ngIf="agendamentoForm.get('cpf').hasError('server')">
+                    CPF inválido
+                  </div>
                 </div>
               </div>
             </div>
           </form>
 
         </div>
+
+        <div [hidden]="!agendamentoCriado" class="sucesso">
+          <h3 class="text-success">Solicitação enviada com sucesso!</h3>
+          <p>Em breve entraremos em contato para confirmar o horário.</p>
+          <p *ngIf="agendamentoCriado">Seu número de solicitação: {{agendamentoCriado.id}}</p>
+          <p>Agradecemos seu contato.</p>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" [hidden]="!profissionalSelecionado" (click)="agendar()">Solicitar Horários</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-success" [hidden]="!profissionalSelecionado || agendamentoCriado" (click)="agendar()" [disabled]="sending">
+          {{sending ? 'Aguarde...' : 'Solicitar Horários'}}
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" [disabled]="sending">{{agendamentoCriado ? 'Fechar' : 'Cancelar'}}</button>
       </div>
     </div>
   </div>

@@ -16,9 +16,9 @@ export class ApiTokenInterceptor implements HttpInterceptor {
    *  Verifica se a URL requisitada é composta pela URL da API e injeta o cabeçalho x-access-token
    */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.startsWith(environment.apiUrl)) {
+        if (req.url.startsWith(environment.feegowApiUrl)) {
             req = req.clone({
-                headers: req.headers.set('x-access-token', environment.apiToken)
+                headers: req.headers.set('x-access-token', environment.feegowApiToken)
             });
         }
         return next.handle(req);

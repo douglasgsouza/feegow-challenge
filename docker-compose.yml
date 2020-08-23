@@ -1,0 +1,37 @@
+version: "3"
+services:
+
+    apache:
+        build: ./feegow-backend
+        image: feegow-backend
+        ports:
+            - "8088:80"
+        env_file:
+            - .env
+        volumes:
+            - ./feegow-backend:/var/www/html
+            - ./feegow-frontend/dist:/var/www/html/public
+            - ./feegow-backend/public/api:/var/www/html/public/api
+        depends_on:
+          - mysql
+          - frontend-build
+        links:
+            - mysql
+
+    mysql:
+        image: mysql:5.7
+        ports:
+            - "3310:3306"
+        env_file:
+            - .env
+        volumes:
+            - db:/var/lib/mysql
+            - ./feegow-database:/docker-entrypoint-initdb.d
+
+    frontend-build:
+        build: ./feegow-frontend
+        volumes:
+            - ./feegow-frontend/dist:/home/node/app/dist
+
+volumes:
+    db:

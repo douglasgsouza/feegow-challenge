@@ -1,7 +1,9 @@
+import {HttpErrorResponse} from '@angular/common/http';
 import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
+import {Agendamento} from '../../core/interfaces/agendamento';
 import {AgendamentoPair} from '../../core/interfaces/agendamento-pair';
 import {PatientSource} from '../../core/interfaces/patient-source';
 import {Professional} from '../../core/interfaces/professional';
@@ -25,11 +27,13 @@ export class AgendamentoModalComponent implements OnInit, OnDestroy {
 
   especialideSelecionada: FormControl;
   profissionalSelecionado: Professional;
+  agendamentoCriado: Agendamento;
 
-  loading = false;
 
   agendamentoForm: FormGroup;
+  loading      = false;
   formSubmited = false;
+  sending      = false;
 
   private unsubscribe$ = new Subject();
 
@@ -91,8 +95,14 @@ export class AgendamentoModalComponent implements OnInit, OnDestroy {
   onHiddenModal(): void {
     this.especialideSelecionada.setValue(null);
     this.profissionalSelecionado = null;
-    this.formSubmited = false;
+    this.agendamentoCriado       = null;
     this.agendamentoForm.reset();
+
+    this.formSubmited = false;
+    this.loading      = false;
+    this.formSubmited = false;
+    this.sending      = false;
+
     this.ref.detectChanges();
   }
 
@@ -123,7 +133,29 @@ export class AgendamentoModalComponent implements OnInit, OnDestroy {
     this.formSubmited = true;
 
     if (this.agendamentoForm.valid) {
-      console.log(this.agendamentoForm.getRawValue());
+      const agendamento = this.agendamentoForm.getRawValue();
+
+      this.sending = true;
+      this.agendamentoForm.disable();
+
+      // envia a requisição para gravar o agendamento
+      this.agendamentoService.salvarAgendamento(agendamento).subscribe(response => {
+        this.agendamentoCriado = response;
+        this.sending = false;
+      }, httpError => {
+        this.agendamentoForm.enable();
+        this.sending = false;
+
+        // verifica se houve erro de validação server side
+        if (httpError instanceof HttpErrorResponse && httpError.status === 422) {
+            const field = httpError.error.error.field;
+            if (this.agendamentoForm.get(field)) {
+              this.agendamentoForm.get(field).setErrors({server: true});
+              this.agendamentoForm.get(field).markAsTouched();
+            }
+        }
+      });
+
     }
   }
 

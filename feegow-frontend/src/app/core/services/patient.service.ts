@@ -57,7 +57,7 @@ export class PatientService {
 
       // faz o request a API
       this.loading = true;
-      return this.http.get<PatientSourceListResponse>(environment.apiUrl + '/patient/list-sources').pipe(
+      return this.http.get<PatientSourceListResponse>(environment.feegowApiUrl + '/patient/list-sources').pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
           this.sources.next(result); // envia o resultado para o fluxo observável para o cache dos dados

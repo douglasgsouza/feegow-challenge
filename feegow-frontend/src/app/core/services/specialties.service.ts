@@ -57,7 +57,7 @@ export class SpecialtiesService {
 
       // faz o request a API
       this.loading = true;
-      return this.http.get<SpecialityListResponse>(environment.apiUrl + '/specialties/list').pipe(
+      return this.http.get<SpecialityListResponse>(environment.feegowApiUrl + '/specialties/list').pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
           this.specialties.next(result); // envia o resultado para o fluxo observável para o cache dos dados

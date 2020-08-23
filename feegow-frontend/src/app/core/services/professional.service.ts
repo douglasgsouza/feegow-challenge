@@ -63,7 +63,7 @@ export class ProfessionalService {
 
       // faz o request a API
       this.loading = true;
-      return this.http.get<ProfessionalListResponse>(environment.apiUrl + '/professional/list').pipe(
+      return this.http.get<ProfessionalListResponse>(environment.feegowApiUrl + '/professional/list').pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
           this.professionals.next(result); // envia o resultado para o fluxo observável para o cache dos dados
@@ -103,7 +103,7 @@ export class ProfessionalService {
 
       // faz o request a API
       this.loading = true;
-      return this.http.get<ProfessionalListResponse>(environment.apiUrl + '/professional/list', {params}).pipe(
+      return this.http.get<ProfessionalListResponse>(environment.feegowApiUrl + '/professional/list', {params}).pipe(
         map(response => response.content), // mapeia o resultado
         switchMap(result => {
           const currentVal = this.professionalsBySpeciality.value || {};
