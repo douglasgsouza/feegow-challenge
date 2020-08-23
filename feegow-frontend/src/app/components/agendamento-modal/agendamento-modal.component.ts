@@ -141,6 +141,7 @@ export class AgendamentoModalComponent implements OnInit, OnDestroy {
       // envia a requisição para gravar o agendamento
       this.agendamentoService.salvarAgendamento(agendamento).subscribe(response => {
         this.agendamentoCriado = response;
+        this.agendamentoForm.enable();
         this.sending = false;
       }, httpError => {
         this.agendamentoForm.enable();
